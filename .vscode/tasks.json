@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "alfred build",
+            "type": "shell",
+            "command": "~/go/bin/alfred build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "alfred link",
+            "type": "shell",
+            "command": "~/go/bin/alfred link"
+        }
+    ]
+}
