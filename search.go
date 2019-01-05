@@ -11,16 +11,13 @@ type searchResponse struct {
 	Notes string `json:"notes"`
 }
 
-type Note struct {
+type note struct {
 	CreationDate     time.Time `json:"creationDate"`
 	Title            string    `json:"title"`
 	ModificationDate time.Time `json:"modificationDate"`
 	Identifier       string    `json:"identifier"`
 	Pin              string    `json:"pin"`
 }
-
-const bearToken = "E822A5-0FA4D9-EE3A6D"
-const xcallPath = "/Applications/xcall.app/Contents/MacOS/xcall"
 
 func formatSearch(query string) string {
 	return fmt.Sprintf("\"bear://x-callback-url/search?show_window=no&term=%s&token=%s\"", query, bearToken)
@@ -29,7 +26,8 @@ func formatSearch(query string) string {
 func runCommand(query string) (searchResponse, error) {
 	cmd := exec.Command(xcallPath, "-url", formatSearch(query))
 	output, err := cmd.Output()
-	response := searchResponse{}
+	fmt.Printf("%s\n", output)
+	var response searchResponse
 	if err != nil {
 		return response, err
 	}
@@ -40,8 +38,8 @@ func runCommand(query string) (searchResponse, error) {
 	return response, nil
 }
 
-func Search(query string) ([]Note, error) {
-	notes := make([]Note, 0)
+func search(query string) ([]note, error) {
+	var notes []note
 	result, err := runCommand(query)
 	if err != nil {
 		return notes, err

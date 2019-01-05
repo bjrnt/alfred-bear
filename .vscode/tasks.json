@@ -13,7 +13,8 @@
         {
             "label": "alfred link",
             "type": "shell",
-            "command": "~/go/bin/alfred link"
+            "command": "~/go/bin/alfred link",
+            "problemMatcher": []
         }
     ]
 }
