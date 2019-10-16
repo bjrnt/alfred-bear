@@ -1,20 +1,32 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "alfred build",
-            "type": "shell",
-            "command": "~/go/bin/alfred build",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "alfred link",
-            "type": "shell",
-            "command": "~/go/bin/alfred link",
-            "problemMatcher": []
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+        "label": "build",
+        "type": "shell",
+        "command": "alfred build",
+        "group": {
+            "kind": "build",
+            "isDefault": true
         }
-    ]
+    },
+    {
+        "label": "link",
+        "type": "shell",
+        "command": "alfred link",
+        "problemMatcher": []
+    },
+    {
+        "label": "unlink",
+        "type": "shell",
+        "command": "alfred unlink"
+    },
+    {
+        "label": "pack",
+        "type": "shell",
+        "command": "alfred pack"
+    }
+]
 }
