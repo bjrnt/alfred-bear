@@ -21,8 +21,9 @@ var (
 func init() {
 	wf = aw.New()
 
-	bearToken = os.Getenv("BEAR_TOKEN")
 	xcallPath = wf.Dir() + "/xcall.app/Contents/MacOS/xcall"
+
+	bearToken = os.Getenv("BEAR_TOKEN")
 	if bearToken == "" {
 		wf.NewWarningItem("BEAR_TOKEN missing in workflow settings", "In Bear, go to Help > API Token to find your token")
 		wf.SendFeedback()
@@ -35,6 +36,11 @@ func run() {
 	if err != nil {
 		wf.Fatalf("%s", err)
 	}
+	outputNotes(notes)
+	wf.SendFeedback()
+}
+
+func outputNotes(notes []note) {
 	for _, note := range notes {
 		wf.NewItem(note.Title).
 			Subtitle(fmt.Sprintf("Last edited %s", humanize.Time(note.ModificationDate))).
@@ -44,7 +50,6 @@ func run() {
 			Icon(IconWorkflow)
 	}
 	wf.WarnEmpty("No matching notes found", "Try another query")
-	wf.SendFeedback()
 }
 
 func main() {
