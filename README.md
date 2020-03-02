@@ -9,6 +9,8 @@
 1. Grab the latest release [here](https://github.com/bjrnt/alfred-bear/releases/) and install the workflow file.
 2. Set `BEAR_TOKEN` inside the workflow's environment variables (select the workflow and press the `[x]` icon in the upper right). The token can be found in by going to `Help > API Token > Copy Token` in Bear.
 
+_Note for Catalina users:_ The first time you use the extension, you will be required to add security exceptions for `alfred-bear` and `xcall.app`. The source of the extension is all in this repo, and xcall.app can be found [here](https://github.com/martinfinke/xcall).
+
 ## Usage
 
 Open Alfred and type `b` and try typing a query. You can also configure a hotkey for it inside the workflow settings.
