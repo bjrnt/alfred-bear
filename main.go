@@ -6,6 +6,7 @@ import (
 
 	aw "github.com/deanishe/awgo"
 	humanize "github.com/dustin/go-humanize"
+	"golang.org/x/text/unicode/norm"
 )
 
 var (
@@ -13,34 +14,39 @@ var (
 		Value: "icon.png",
 		Type:  aw.IconTypeImage,
 	}
-	wf        *aw.Workflow
-	bearToken string
-	xcallPath string
+	wf          *aw.Workflow
+	userHomeDir string
 )
 
 func init() {
 	wf = aw.New()
 
-	xcallPath = wf.Dir() + "/xcall.app/Contents/MacOS/xcall"
-
-	bearToken = os.Getenv("BEAR_TOKEN")
-	if bearToken == "" {
-		wf.NewWarningItem("BEAR_TOKEN missing in workflow settings", "In Bear, go to Help > API Token to find your token")
-		wf.SendFeedback()
+	// Try to read the user's home directory. This is required for finding Bear's SQLite DB
+	var err error
+	userHomeDir, err = os.UserHomeDir()
+	if err != nil {
+		wf.FatalError(err)
 	}
 }
 
 func run() {
-	query := os.Args[1]
+	// For some annoying reason, UTF-8 arguments from Alfred are not normalized in the correct way,
+	// so any non-ASCII characters break the query. Here we normalize the UTF-8 input to make sure
+	// that it can be handled properly by the DB
+	query := string(norm.NFC.Bytes([]byte(os.Args[1])))
+
+	// search the user's bear notes
 	notes, err := search(query)
 	if err != nil {
-		wf.Fatalf("%s", err)
+		wf.FatalError(err)
 	}
-	outputNotes(notes)
+
+	// send the results to alfred
+	sendNotes(notes)
 	wf.SendFeedback()
 }
 
-func outputNotes(notes []note) {
+func sendNotes(notes []note) {
 	for _, note := range notes {
 		wf.NewItem(note.Title).
 			Subtitle(fmt.Sprintf("Last edited %s", humanize.Time(note.ModificationDate))).

@@ -89,7 +89,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>open 'bear://x-callback-url/open-note?id=$1&amp;new_window=yes&amp;show_window=yes&amp;edit=yes'</string>
+				<string>open "bear://x-callback-url/open-note?id=$1&amp;show_window=yes"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -124,17 +124,8 @@
 			<integer>80</integer>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>BEAR_TOKEN</key>
-		<string></string>
-	</dict>
-	<key>variablesdontexport</key>
-	<array>
-		<string>BEAR_TOKEN</string>
-	</array>
 	<key>version</key>
-	<string>2.0.0</string>
+	<string>3.0.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
