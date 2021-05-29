@@ -8,7 +8,7 @@
 
 Grab the latest release [here](https://github.com/bjrnt/alfred-bear/releases/) and install the workflow file.
 
-_Note for Catalina users:_ The first time you use the extension, you will be required to add security exceptions for `alfred-bear`.
+_Note:_ The first time you use the extension, it will be blocked from running and you will have to open "Security & Privacy" to allow it.
 
 ## Usage
 
