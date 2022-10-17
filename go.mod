@@ -5,7 +5,7 @@ require (
 	github.com/dustin/go-humanize v1.0.0
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/pkg/errors v0.9.1
-	golang.org/x/text v0.3.6
+	golang.org/x/text v0.4.0
 )
 
 go 1.13
