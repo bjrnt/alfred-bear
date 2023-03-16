@@ -3,8 +3,8 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/deanishe/awgo v0.29.0 h1:mx8cNHTv2siGEbgKSlFXG8pJhE6lvQE5hY9t8ddxjzQ=
-github.com/deanishe/awgo v0.29.0/go.mod h1:1yGF+uQfWXX99TiDfAYYKjJpHTq5lHEmvHFEVCHo6KA=
+github.com/deanishe/awgo v0.29.1 h1:yKAyy0e+HR60iPxaKHhY3hdTM5GCsECpWTP79j04bHg=
+github.com/deanishe/awgo v0.29.1/go.mod h1:1yGF+uQfWXX99TiDfAYYKjJpHTq5lHEmvHFEVCHo6KA=
 github.com/dustin/go-humanize v1.0.0 h1:VSnTsYCnlFHaM2/igO1h6X3HA71jcobQuxemgkq4zYo=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
