@@ -112,20 +112,61 @@
 		<key>9454A998-DEB4-4E4E-81FA-081EBD5A2F3F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<real>340</real>
 			<key>ypos</key>
-			<integer>80</integer>
+			<real>80</real>
 		</dict>
 		<key>E0B7F513-FA5A-4CB5-B7FB-461104881DB9</key>
 		<dict>
 			<key>xpos</key>
-			<integer>80</integer>
+			<real>80</real>
 			<key>ypos</key>
-			<integer>80</integer>
+			<real>80</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Ignore</string>
+			</dict>
+			<key>description</key>
+			<string>Ignore notes in the Bear trash when searching</string>
+			<key>label</key>
+			<string>Ignore Trashed</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>IGNORE_TRASHED</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Ignore</string>
+			</dict>
+			<key>description</key>
+			<string>Ignore notes in the Bear archive when searching</string>
+			<key>label</key>
+			<string>Ignore Archived</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>IGNORE_ARCHIVED</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>3.0.0</string>
+	<string>3.1.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

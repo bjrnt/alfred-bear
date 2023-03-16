@@ -9,17 +9,32 @@ import (
 	"golang.org/x/text/unicode/norm"
 )
 
+const (
+	ignoreTrashedNotesEnvVar  = "IGNORE_TRASHED"
+	ignoreArchivedNotesEnvVar = "IGNORE_ARCHIVED"
+)
+
 var (
 	IconWorkflow = &aw.Icon{
 		Value: "icon.png",
 		Type:  aw.IconTypeImage,
 	}
-	wf          *aw.Workflow
-	userHomeDir string
+	wf             *aw.Workflow
+	userHomeDir    string
+	ignoreTrashed  = true
+	ignoreArchived = true
 )
+
+func tryGetEnvBool(key string) bool {
+	val := os.Getenv(key)
+	return len(val) != 0 && val != "0"
+}
 
 func init() {
 	wf = aw.New()
+
+	ignoreTrashed = tryGetEnvBool(ignoreTrashedNotesEnvVar)
+	ignoreArchived = tryGetEnvBool(ignoreArchivedNotesEnvVar)
 
 	// Try to read the user's home directory. This is required for finding Bear's SQLite DB
 	var err error

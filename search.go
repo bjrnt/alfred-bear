@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"strings"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -35,9 +36,10 @@ const (
 		strftime('%s', ZMODIFICATIONDATE, 'unixepoch', '31 years')
 	FROM ZSFNOTE 
 	WHERE 
-		ZTITLE LIKE ? OR ZTEXT LIKE ? 
-		AND ZTRASHEDDATE IS NULL 
-	ORDER BY ZMODIFICATIONDATE DESC`
+	(ZTITLE LIKE ? OR ZTEXT LIKE ?)`
+	NOTE_QUERY_ORDERBY      = `ORDER BY ZMODIFICATIONDATE DESC`
+	NOTE_QUERY_NOT_TRASHED  = `AND ZTRASHEDDATE IS NULL`
+	NOTE_QUERY_NOT_ARCHIVED = `AND ZARCHIVEDDATE IS NULL`
 )
 
 // search the user's notes for the given query.
@@ -51,8 +53,18 @@ func search(query string) ([]note, error) {
 	// col LIKE '%abc%' will search for abc anywhere in the VARCHAR column, ignoring case. Reformat
 	// the query to be surrounded by wildcard % chars.
 	query = fmt.Sprintf("%%%s%%", query)
+
+	queryParts := []string{NOTE_QUERY}
+	if ignoreArchived {
+		queryParts = append(queryParts, NOTE_QUERY_NOT_ARCHIVED)
+	}
+	if ignoreTrashed {
+		queryParts = append(queryParts, NOTE_QUERY_NOT_TRASHED)
+	}
+	queryParts = append(queryParts, NOTE_QUERY_ORDERBY)
+
 	// execute query with escaped parameters
-	rows, err := db.Query(NOTE_QUERY, query, query)
+	rows, err := db.Query(strings.Join(queryParts, " "), query, query)
 	if err != nil {
 		return nil, errors.Wrap(err, "execute sqlite query")
 	}
